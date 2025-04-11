@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@radix-ui/themes/styles.css";
+
+/* styles.css */
+
+.custom-resize-cursor:hover {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 15 15'><path fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M4.818 4.682a.25.25 0 0 1 0 .353L3.086 7.05h8.827l-1.732-1.732a.25.25 0 1 1 .354-.353l2.5 2.5a.25.25 0 0 1 0 .353l-2.5 2.5a.25.25 0 0 1-.354-.354l1.732-1.732H3.086l1.732 1.732a.25.25 0 1 1-.354.354l-2.5-2.5a.25.25 0 0 1 0-.353l2.5-2.5a.25.25 0 0 1 .354 0Z'/></svg>")
+      7 7,
+    col-resize;
+}
