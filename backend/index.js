@@ -5,6 +5,7 @@ import session from "express-session";
 import cors from "cors";
 import './config/passport.js';
 import authRoutes from './routes/authRoutes.js';
+import executeRoutes from './routes/executeRoutes.js';
 
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
@@ -25,12 +26,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 
 
 // Routes
 app.use("/auth", authRoutes);
-
+app.use("/api", executeRoutes);
 
 
 const PORT = process.env.PORT || 5000;
