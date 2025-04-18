@@ -1,7 +1,7 @@
-export default function TerminalOutput({ output = "Hello, World!\n" }) {
+export default function TerminalOutput({ output }) {
     return (
-        <div className="h-full font-mono text-sm whitespace-pre-wrap text-green-400">
-            {output}
+        <div className="text-green-400 font-mono whitespace-pre-wrap">
+            {output || 'Run your code to see output here...'}
         </div>
     );
 }
