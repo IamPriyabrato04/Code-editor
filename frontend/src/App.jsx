@@ -10,7 +10,10 @@ const App = () => {
 
   return (
 
-    <div className="h-screen w-full">
+      <div
+        className="h-screen w-full"
+        
+      >
       <TabNav.Root>
         <TabNav.Link href="#" active>
           Account
@@ -38,9 +41,7 @@ const App = () => {
           </Card>
         </Box>
       </TabNav.Root>
-      {/* <div className="flex-1 flex items-center justify-center">
-          
-        </div> */}
+      
       <AppLayout
         code={code}
         setCode={setCode}
