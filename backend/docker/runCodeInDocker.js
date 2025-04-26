@@ -23,7 +23,7 @@ const runCodeInDocker = async (language, code, input = "") => {
 
 
   try {
-    fs.writeFileSync(filePath, code);
+    fs.writeFileSync(filePath, code, { encoding: 'utf8' });
 
     console.log("Writing file:", filePath);
 
@@ -47,7 +47,7 @@ const runCodeInDocker = async (language, code, input = "") => {
       await container.start();
       console.log("Running Docker container...");
     } catch (err) {
-      console.error("❌ Error starting container:", err);
+      console.error("Error starting container:", err);
     }
 
 
@@ -60,7 +60,7 @@ const runCodeInDocker = async (language, code, input = "") => {
 
     await container.wait();
     fs.unlinkSync(filePath);
-    console.log("Execution completed:", output);
+    console.log(output);
     return output;
   } catch (err) {
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);

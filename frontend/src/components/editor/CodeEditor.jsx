@@ -23,7 +23,7 @@ const languageOptions = [
   { name: 'Python', value: 'python', icon: 'https://img.icons8.com/?size=100&id=13441&format=png' },
   { name: 'JavaScript', value: 'javascript', icon: 'https://img.icons8.com/?size=100&id=108784&format=png' },
   { name: 'Java', value: 'java', icon: 'https://img.icons8.com/?size=100&id=13679&format=png' },
-  { name: 'Go', value: 'go', icon: 'https://img.icons8.com/?size=100&id=53086&format=png' },
+  { name: 'Golang', value: 'go', icon: 'https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Aqua.png' },
 ];
 
 // Language extensions
@@ -86,7 +86,7 @@ export default function CodeEditor({ theme }) {
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <Button variant="soft" className="flex items-center gap-2">
-                  <img src={selectedLang.icon} className="w-5 h-5" />
+                  <img src={selectedLang.icon} className="w-6 h-6" />
                   {selectedLang.name}
                   <DropdownMenu.TriggerIcon />
                 </Button>
@@ -96,13 +96,12 @@ export default function CodeEditor({ theme }) {
                 {languageOptions.map((lang) => (
                   <DropdownMenu.Item key={lang.value} onSelect={() => handleLanguageChange(lang.value)} className="cursor-pointer flex justify-between items-center p-2 hover:bg-zinc-700 rounded">
                     <span>{lang.name}</span>
-                    <img src={lang.icon} className="w-5 h-5" />
+                    <img src={lang.icon} className="w-6 h-6" />
                   </DropdownMenu.Item>
                 ))}
               </DropdownMenu.Content>
             </DropdownMenu.Root>
 
-            <span className="text-sm font-medium text-white">Code Editor</span>
 
             {/* Run Button */}
             <Button onClick={handleRun} disabled={loading}>
@@ -129,6 +128,10 @@ export default function CodeEditor({ theme }) {
 
       {/* Terminal Panel */}
       <Panel defaultSize={30} minSize={20}>
+        <span className='flex pl-1 p-2 gap-3 border-b bg-zinc-800'>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACzUlEQVR4nO2YTWhTQRDH1y9U6kEFEQ9SkYI1byZR6kH0IFIED8VbK148KHrSk0IRhbZHLaUmO0ktCp4U6UU8KagIfoAHkVLSN9uKVHsRwagUxFbUyCQbKU3aJCbmvbTvD0N4u2/nzW9nd/blKRXIZ6JkaJ02eI0Mpshgus4sJbH3DocbFBkc9EFAldqAymUiwdii6kyaYY8F+aRyVKpORbn4AxCfiBZtRqjOTS06EFWnogDEZ6IgIz4TLemM9E9E1mvXaYsZ5yQZ6KBkqKnYmJhx9mvG0zEDzcprkN7hcAMZjJHBmbwazvB4ISDNeCR7H97xFKRvcu9abfCF3KMNThHDdW2wUzPEieFLpp3hI43ubCw0vuvJgZXa4AdinO5LhjZ6BkIM/Rbi3QBHts3uG3Sbt2jGyWw/3F7Ax+XMc1w44wlIdHzXJs34PROo67QVdDSGp2xWvqbTapm0aYPtYjQaceQ6wbhDM/4mhteegJCLx2x/aijdvqJc55qx+28b43Npi46Hd1cLonQQxh472y9VGSoMAifsEo2W46sqINrAlWw/PFBlKDGCG8SkUMz5WjMl2Y2ON61WtQXBTruRk/M5GnzVsioxhtvFutJq+YIPZbwh/mLGOVoNiNKXlsFWewZMy2FY+J7wYQv7LbfZ51OcnX3/kuGKQWS2yeB7C9NT2BHcsvvovipBmtElxl/xN85WVdNzxECHDfSnZjgrcNIus08M56SsZkqrwdZZzofEpATngzjn7cRcqimISLtwwQYrVeeznAeZ0zpbmQTkoipStXK6OgKbtYEfmvFtsaX4X14a5eWPDNyzlUfGzGiGR9qFQ3nOGR+KxcfCxws+nPGu+Iizc7DmILOV+WhcgW5ONK6R8iy/qkLRkv4/4kdRAOIzUZARn4mCjPhMFGTEZ6IgIz4TBRnxe0aozk1phmdeB1GxMTz1emUEUnP0B0uqG0DnMEmPAAAAAElFTkSuQmCC" alt="command-line" width={"25px"} height={"25px"} />
+          <span className="text-lg font-normal text-white">Terminal</span>
+        </span>
         <div className="w-full h-full border-l border-zinc-700 bg-zinc-950 p-2 overflow-auto">
           <TerminalOutput output={output} />
         </div>

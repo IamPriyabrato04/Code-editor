@@ -1,5 +1,5 @@
 import FileExplorer from '../components/sidebar/FileExplorer';
-import TopBarWrapper from './TopBarWrapper';
+// import TopBarWrapper from './TopBarWrapper';
 import CodeEditor from '../components/editor/CodeEditor';
 
 export default function AppLayout({ ...props }) {
@@ -10,7 +10,7 @@ export default function AppLayout({ ...props }) {
             </aside>
 
             <div className="flex-1 flex flex-col">
-                <TopBarWrapper />
+                {/* <TopBarWrapper /> */}
                 <div className="flex-1">
                     <CodeEditor {...props} />
                 </div>

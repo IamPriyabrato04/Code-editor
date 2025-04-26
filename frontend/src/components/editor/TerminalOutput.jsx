@@ -1,6 +1,7 @@
+
 export default function TerminalOutput({ output }) {
     return (
-        <div className="text-green-400 font-mono whitespace-pre-wrap">
+        <div className=" font-mono whitespace-pre-wrap" style={{ color: "#9DFF34CF" }}>
             {output || 'Run your code to see output here...'}
         </div>
     );
