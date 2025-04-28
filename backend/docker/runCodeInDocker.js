@@ -60,6 +60,7 @@ const runCodeInDocker = async (language, code, input = "") => {
 
     await container.wait();
     fs.unlinkSync(filePath);
+    output = output.replace(/^\s*[\x00-\x1F]+/, ''); // remove weird leading control characters
     console.log(output);
     return output;
   } catch (err) {

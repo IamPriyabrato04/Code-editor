@@ -12,8 +12,8 @@ const LANG_CONFIG = {
   cpp: {
     image: "gcc:latest",
     ext: "cpp",
-    cmd: (filename, input) =>
-      `g++ ${filename} -o /app/a.out && echo "${input}" | ./a.out`,
+    cmd: (fileName, input) =>
+      `g++ /temp/${fileName} -o /temp/a.out && echo "" | /temp/a.out`
   },
   java: {
     image: "openjdk:17-alpine",
