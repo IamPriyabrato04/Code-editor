@@ -6,6 +6,7 @@ import cors from "cors";
 import './config/passport.js';
 import authRoutes from './routes/authRoutes.js';
 import executeRoutes from './routes/executeRoutes.js';
+import fileRoutes from './routes/FileRoutes.js';
 
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
@@ -35,6 +36,7 @@ app.use(cors({
 // Routes
 app.use("/auth", authRoutes);
 app.use("/api", executeRoutes);
+app.use('/api', fileRoutes);
 
 
 const PORT = process.env.PORT || 5000;
