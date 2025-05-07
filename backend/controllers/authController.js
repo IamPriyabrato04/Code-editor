@@ -16,23 +16,23 @@ const generateToken = (user) => {
 // 🔹 User Signup
 export const signup = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
     let user = await User.findOne({ email });
 
     if (user) return res.status(400).json({ message: "User already exists" });
 
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    user = new User({ username, email, password: hashedPassword });
+    user = new User({ name, email, password }); // pre-save hook hashes password
     await user.save();
 
-    // Generate JWT Token
     const token = generateToken(user);
 
     res.status(201).json({ message: "User registered", token });
+    return ;
   } catch (err) {
+    console.log(err);
+    
     res.status(500).json({ message: err.message });
+    return ;
   }
 };
 
@@ -44,23 +44,21 @@ export const login = async (req, res) => {
 
     if (!user) return res.status(400).json({ message: "User not found" });
 
-    // Validate password
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      console.log("Invalid credentials");
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-
-    // const isMatch = await bcrypt.compare(password, user.password);
-    // if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
-
-    // Generate JWT Token
     const token = generateToken(user);
 
-    return res.cookie("token", token, { httpOnly: true, secure: true }).status(200).json({ message: "Logged in", token });
+    return res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      })
+      .status(200)
+      .json({ message: "Logged in", token });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: err.message });
   }
 };
